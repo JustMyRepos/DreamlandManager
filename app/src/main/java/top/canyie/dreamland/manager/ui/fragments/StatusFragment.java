@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.DownloadChannel;
@@ -195,15 +196,15 @@ public class StatusFragment extends PageFragment
             cardBackgroundColorRes = normal ? R.color.color_active :
                     warning ? R.color.color_warning : R.color.color_error;
         }
-        statusCardBackground.setBackgroundColor(statusCardBackground.getContext().getColor(cardBackgroundColorRes));
+        statusCardBackground.setBackgroundColor(ContextCompat.getColor(statusCardBackground.getContext(), cardBackgroundColorRes));
         statusImage.setImageResource(cardImageRes);
 
         if (info.checkVerifiedBootFailed) {
             verifiedBootStateText.setText(R.string.verified_boot_state_unknown);
-            verifiedBootStateText.setTextColor(requireContext().getColor(R.color.color_error));
+            verifiedBootStateText.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_error));
         } else if (info.isVerifiedBootActive) {
             verifiedBootStateText.setText(R.string.verified_boot_state_active);
-            verifiedBootStateText.setTextColor(requireContext().getColor(R.color.color_error));
+            verifiedBootStateText.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_error));
         } else if (info.detectVerifiedBoot) {
             verifiedBootStateText.setText(R.string.verified_boot_state_deactivated);
         } else {
@@ -215,7 +216,7 @@ public class StatusFragment extends PageFragment
                 seLinuxModeText.setText(R.string.selinux_mode_enforcing);
             } else {
                 seLinuxModeText.setText(R.string.selinux_mode_permissive);
-                seLinuxModeText.setTextColor(requireContext().getColor(R.color.color_error_dark));
+                seLinuxModeText.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_error_dark));
             }
         } else {
             seLinuxModeText.setText(R.string.selinux_mode_disabled);
